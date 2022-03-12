@@ -1,4 +1,4 @@
-package junit.les09homework;
+package tests;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
@@ -41,10 +41,9 @@ public class ReadFile {
     }
 
     void parseCsvTest(InputStream file) throws Exception {
-        try (CSVReader reader = new CSVReader(new InputStreamReader(file));) {
+        try (CSVReader reader = new CSVReader(new InputStreamReader(file))) {
             List<String[]> strA = reader.readAll();
             assertThat(strA.get(1)).contains(
-                    //"booker12", "9012", "Rachel", "Booker"
                     "booker12;9012;Rachel;Booker"
             );
         }
