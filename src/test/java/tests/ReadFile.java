@@ -23,19 +23,19 @@ public class ReadFile {
 
     @Test
     void readZip() throws Exception {
-        ZipFile zF = new ZipFile("src/test/resources/zipfile.zip");
-        Enumeration<? extends ZipEntry> entries = zF.entries();
+        ZipFile siZipov = new ZipFile("src/test/resources/zipfile.zip");
+        Enumeration<? extends ZipEntry> entries = siZipov.entries();
         while (entries.hasMoreElements()) {
             ZipEntry entry = entries.nextElement();
             if (entry.getName().contains("csv")) {
                 assertThat(entry.getName()).isEqualTo(CSVFILE);
-                parseCsvTest(zF.getInputStream(entry));
+                parseCsvTest(siZipov.getInputStream(entry));
             } else if (entry.getName().contains("xls")) {
                 assertThat(entry.getName()).isEqualTo(XLSXFILE);
-                parseXlsTest(zF.getInputStream(entry));
+                parseXlsTest(siZipov.getInputStream(entry));
             } else if (entry.getName().contains("pdf")) {
                 assertThat(entry.getName()).isEqualTo(PDFFILE);
-                parsePdfTest(zF.getInputStream(entry));
+                parsePdfTest(siZipov.getInputStream(entry));
             }
         }
     }
@@ -43,8 +43,9 @@ public class ReadFile {
     void parseCsvTest(InputStream file) throws Exception {
         try (CSVReader reader = new CSVReader(new InputStreamReader(file));) {
             List<String[]> strA = reader.readAll();
-            assertThat(strA.get(0)).contains(
-                    "Eldon Base for stackable storage shelf, platinum"
+            assertThat(strA.get(1)).contains(
+                    //"booker12", "9012", "Rachel", "Booker"
+                    "booker12;9012;Rachel;Booker"
             );
         }
     }
@@ -54,15 +55,15 @@ public class ReadFile {
         assertThat(xls.excel
                 .getSheetAt(0)
                 .getRow(0)
-                .getCell(0)
-                .getStringCellValue()).contains("QA.GURU");
+                .getCell(1)
+                .getStringCellValue()).contains("Eldon Base for stackable storage shelf, platinum");
 
     }
 
     void parsePdfTest(InputStream file) throws Exception {
         PDF pdf = new PDF(file);
         assertThat(pdf.text).contains(
-                "Министерство образования Российской Федерации "
+                "Dummy PDF file"
         );
 
     }
