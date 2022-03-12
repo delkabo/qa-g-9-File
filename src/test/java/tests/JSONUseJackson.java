@@ -15,7 +15,6 @@ public class JSONUseJackson {
         try {
             // create object mapper instance
             ObjectMapper mapper = new ObjectMapper();
-            //ZipFile siZipov = new ZipFile("src/test/resources/zipfile.zip");
             // convert JSON file to map
             Map<?, ?> map = mapper.readValue(Paths.get("src/test/resources/book.json").toFile(), Map.class);
 
