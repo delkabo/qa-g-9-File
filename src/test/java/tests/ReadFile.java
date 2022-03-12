@@ -18,19 +18,19 @@ public class ReadFile {
 
     private static final String
             CSVFILE = "SampleCSVFile.csv",
-            XLSXFILE = "tableWithJpg.xlsx",
-            PDFFILE = "PDFTesting.pdf";
+            XLSXFILE = "SampleXLSFile.xls",
+            PDFFILE = "SamplePDFFile.pdf";
 
     @Test
     void readZip() throws Exception {
-        ZipFile zF = new ZipFile("src/test/resources/Downloads.zip");
+        ZipFile zF = new ZipFile("src/test/resources/zipfile.zip");
         Enumeration<? extends ZipEntry> entries = zF.entries();
         while (entries.hasMoreElements()) {
             ZipEntry entry = entries.nextElement();
             if (entry.getName().contains("csv")) {
                 assertThat(entry.getName()).isEqualTo(CSVFILE);
                 parseCsvTest(zF.getInputStream(entry));
-            } else if (entry.getName().contains("xlsx")) {
+            } else if (entry.getName().contains("xls")) {
                 assertThat(entry.getName()).isEqualTo(XLSXFILE);
                 parseXlsTest(zF.getInputStream(entry));
             } else if (entry.getName().contains("pdf")) {
