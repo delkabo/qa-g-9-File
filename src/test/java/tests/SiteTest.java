@@ -1,6 +1,6 @@
 package tests;
 
-import com.delkabo.config.AuthConfig;
+import tests.config.AuthConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,10 +17,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class SiteTest {
 
     Path props = Paths.get("src/test/resources/auth.properties");
-
     Path newFilePath = Paths.get("src/test/resources/auth1.properties");
-
-    Path newFilePath3 = Paths.get("src/test/resources/auth2.properties");
+    Path newFilePath3 = Paths.get("C:/Users/delkabo/Desktop/auth2.properties");
+    String newFilePath3Str = newFilePath3.toString();
 
     @BeforeEach
     public void clearFile() throws Exception {
@@ -40,7 +39,7 @@ public class SiteTest {
     public void testRemoteFile3() throws Exception{
 
         Files.deleteIfExists(newFilePath3);
-        File newFile = new File("src/test/resources/auth2.properties");
+        File newFile = new File(newFilePath3Str);
 
         assertThat(newFile.getName()).isEqualTo("auth2.properties");
         String content = "test write file 1";
