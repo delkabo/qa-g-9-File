@@ -1,7 +1,5 @@
 package tests;
 
-import tests.config.AuthConfig;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +12,7 @@ import java.nio.file.Paths;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class SiteTest {
+public class WriteIntoFileTest {
 
     Path props = Paths.get("src/test/resources/auth.properties");
     Path newFilePath = Paths.get("src/test/resources/auth1.properties");
