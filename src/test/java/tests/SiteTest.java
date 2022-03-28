@@ -47,6 +47,7 @@ public class SiteTest {
         Files.write(newFilePath3, content.getBytes());
 
         BufferedReader reader = new BufferedReader(new FileReader(newFile));
+
         String currentLine =reader.readLine();
         reader.close();
 
